@@ -176,6 +176,37 @@ var datatableinit = $('#datatableinit').DataTable( {
                 
                 
     
+                
+                
+                ->orderColumn('name', function ($query, $order) {
+                        $query->orderBy('name', $order);
+                })
+                ->orderColumn('email', function ($query, $order) {
+                        $query->orderBy('email', $order);
+                })
+                
+                
+                
+                ->order(function ($query) {
+                    if(array_key_exists(is_array(request()->order)?request()->order[0]['column']:'', [2=>'name', 3=>'email'])){
+                        $query->orderBy('id', request()->order[0]['dir']);
+                    }else{
+                        $query->orderBy('id', 'desc');
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
           
           
           
